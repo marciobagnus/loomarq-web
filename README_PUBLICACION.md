@@ -1,4 +1,4 @@
-# LOOMARQ Web Production v1.4
+# LOOMARQ Web Production v1.5
 
 Sitio estático de LOOMARQ para `https://getloomarq.com`, construido con HTML, CSS, JavaScript e imágenes. No requiere instalación de paquetes, framework, compilación ni backend propio. El formulario utiliza Netlify Forms.
 
@@ -23,6 +23,7 @@ La preparación local no crea el repositorio remoto, no conecta servicios y no p
 ├── netlify.toml               # Publicación desde la raíz y cabeceras HTTP
 ├── .gitignore
 ├── README_PUBLICACION.md
+├── tests/contact-form.test.mjs # Regresiones del formulario con node:test
 └── assets/
     ├── css/styles.css
     ├── js/main.js              # Menú, año y envío confirmado de consultas
@@ -128,6 +129,8 @@ Registro de la revisión v1.3, anterior al envío dentro del sitio incorporado e
 
 ## Corrección del formulario (v1.4)
 
+Registro histórico. La comprobación del HTML de respuesta introducida en esta versión era demasiado estricta y se corrige en v1.5, descrita a continuación.
+
 ### Diagnóstico
 
 El 19 de noviembre de 2026 se comprobó mediante GET que el sitio responde desde Netlify y que `/gracias.html` y `/gracias` existen y responden HTTP 200. No hay framework ni router de aplicación: son archivos estáticos publicados desde la raíz. No se encontró FormSubmit, `_next`, API propia ni configuración de Vercel.
@@ -165,6 +168,30 @@ Las pruebas comprobaron la conservación de datos ante fallos, la limpieza únic
 No se enviaron consultas reales, no se verificó entrega por correo y no se publicaron cambios. La comprobación del servicio y de las notificaciones sigue el procedimiento anterior en Netlify.
 
 Referencias oficiales: [detección y envío AJAX de formularios](https://docs.netlify.com/manage/forms/setup/), [historial de envíos](https://docs.netlify.com/manage/forms/submissions/) y [notificaciones por email](https://docs.netlify.com/manage/forms/notifications/).
+
+## Compatibilidad de la confirmación con Netlify (v1.5)
+
+Después de activar Forms y desplegar, el HTML público ya muestra el formulario procesado por Netlify: `data-netlify` fue eliminado y `form-name=evaluacion` está presente. El dominio sigue respondiendo desde Netlify. Esto corrige la ausencia de detección observada inicialmente, pero deja al descubierto un error de v1.4.
+
+Netlify puede responder al POST con HTTP 200 y el contenido HTML de la página configurada en `action`. Como el formulario usa `action="/"`, esa respuesta puede contener la portada, incluido el formulario y su hoja de estilos. La validación de v1.4 interpretaba esos elementos como un error y mostraba «No pudimos confirmar el envío» aunque el servicio hubiera aceptado el POST. Esta combinación se reprodujo en Chrome usando una respuesta HTTP 200 con la portada: el código anterior falla y el corregido muestra la confirmación.
+
+`main.js` ahora evalúa el resultado HTTP del POST al servicio configurado y rechaza errores y redirecciones. El HTML devuelto por Netlify no se analiza ni se inserta en la página. Se conservan el envío al mismo origen, la validación de campos, el timeout, el bloqueo de duplicados y la conservación de datos ante errores. Un HTTP exitoso confirma la aceptación por el servicio de Forms; la llegada de la notificación al correo debe comprobarse por separado en Forms y en el destinatario. No hay cambios de proveedor, configuración de producción ni dependencias nuevas.
+
+### Verificaciones
+
+```powershell
+node --test tests/contact-form.test.mjs
+node --check assets/js/main.js
+git diff --check
+```
+
+Las 13 pruebas de `node:test` cubren HTTP 200 con portada, página propia y cuerpo vacío; validación previa; espera y duplicados; errores 400, 404, 422, 429 y 500; fallo de red y reintento manual; timeout y respuesta redirigida. Usan respuestas simuladas y no envían consultas reales. También se reprodujo el fallo y la corrección en Chrome con POST interceptados localmente y la CSP existente, y se comprobó que un 404 sigue conservando los datos. No hay build, lint ni chequeo de tipos configurados.
+
+Con autorización explícita se realizó después un único envío técnico en producción, sin reintentos. Netlify respondió HTTP 200, `Content-Type: text/html`, con una referencia a `/assets/css/styles.css` en el cuerpo. El navegador mostró igualmente el error de v1.4: quedó confirmado que su comprobación del HTML rechaza una respuesta exitosa del proveedor. Esta prueba acredita la respuesta HTTP observada, pero no confirma por sí sola el registro en Forms ni la recepción de una notificación por correo; ambos deben revisarse también, incluyendo la carpeta de spam.
+
+La corrección está preparada en una rama separada para revisión y despliegue. La revisión local no demuestra recepción de notificaciones por correo. Si el mensaje anterior apareció durante un envío real, revisar si esa consulta ya está en Forms antes de volver a enviarla.
+
+Referencia del proveedor: [respuesta de Forms con el contenido de action](https://answers.netlify.com/t/netlify-form-resubmitting-on-page-refresh-safari-only/32809) y [configuración y envío AJAX](https://docs.netlify.com/manage/forms/setup/).
 
 ## Rutas y dominio
 
