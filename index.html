@@ -3,86 +3,211 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>LOOMARQ | Tecnología e ingeniería digital para producción industrial</title>
-  <meta name="description" content="LOOMARQ conecta diseño, software y operación para ayudar a empresas industriales a poner nuevos productos en producción con maquinaria automatizada.">
+  <title>LOOMARQ | Integración de sistemas y automatización empresarial</title>
+  <meta name="description" content="Conectamos sistemas y automatizamos tareas de tu empresa. Proyectos con alcance, entregables y fechas acordadas. Especialidad en implementación digital industrial.">
   <meta name="theme-color" content="#0f2d32">
   <link rel="canonical" href="https://getloomarq.com/">
-  <meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="LOOMARQ">
-  <meta property="og:title" content="LOOMARQ | Del diseño a la producción"><meta property="og:description" content="Tecnología e ingeniería digital para producción industrial.">
-  <meta property="og:url" content="https://getloomarq.com/"><meta property="og:image" content="https://getloomarq.com/assets/img/og/loomarq-og-home.jpg">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="LOOMARQ | Del diseño a la producción"><meta name="twitter:description" content="Tecnología e ingeniería digital para producción industrial."><meta name="twitter:image" content="https://getloomarq.com/assets/img/og/loomarq-og-home.jpg">
-  <link rel="icon" href="./favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png"><link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png"><link rel="manifest" href="./site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="LOOMARQ">
+  <meta property="og:title" content="LOOMARQ | Integración de sistemas y automatización empresarial">
+  <meta property="og:description" content="Conectamos herramientas, reducimos tareas manuales y mejoramos procesos de trabajo. Proyectos con alcance, entregables y fechas acordadas.">
+  <meta property="og:url" content="https://getloomarq.com/">
+  <meta property="og:image" content="https://getloomarq.com/assets/img/brand/loomarq-symbol-primary.png">
+  <meta property="og:image:alt" content="Símbolo de LOOMARQ">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LOOMARQ | Integración de sistemas y automatización empresarial">
+  <meta name="twitter:description" content="Conectamos herramientas, reducimos tareas manuales y mejoramos procesos de trabajo. Proyectos con alcance, entregables y fechas acordadas.">
+  <meta name="twitter:image" content="https://getloomarq.com/assets/img/brand/loomarq-symbol-primary.png">
+  <meta name="twitter:image:alt" content="Símbolo de LOOMARQ">
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
   <link rel="stylesheet" href="./assets/css/styles.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"LOOMARQ","url":"https://getloomarq.com/","logo":"https://getloomarq.com/assets/img/brand/loomarq-logo-primary.png","description":"Tecnología e ingeniería digital para producción industrial.","areaServed":"AR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"LOOMARQ","url":"https://getloomarq.com/","logo":"https://getloomarq.com/assets/img/brand/loomarq-logo-primary.png","description":"Integración de sistemas y automatización de procesos empresariales mediante proyectos de alcance definido. Especialidad en implementación digital industrial.","areaServed":"AR","founder":{"@type":"Person","name":"Marcio Bagnus","jobTitle":"Ingeniero en Sistemas de Información"}}</script>
 </head>
 <body>
 <a class="skip" href="#contenido">Ir al contenido</a>
 <header class="header">
   <div class="wrap header__inner">
     <a class="brand" href="#inicio" aria-label="LOOMARQ, inicio"><img src="./assets/img/brand/loomarq-logo-primary.png" width="300" height="100" alt="LOOMARQ"></a>
-    <nav class="nav" data-nav aria-label="Navegación principal">
-      <a href="#soluciones">Qué hacemos</a><a href="#metodo">Cómo trabajamos</a><a href="#proposito">Por qué</a><a href="#evolucion">Hacia dónde vamos</a><a class="nav__cta" href="#contacto">Hablemos ↗</a>
+    <button class="menu" data-menu type="button" hidden aria-label="Abrir menú" aria-controls="navegacion" aria-expanded="false">Menú <span aria-hidden="true">☰</span></button>
+    <nav class="nav" id="navegacion" data-nav aria-label="Navegación principal">
+      <a href="#soluciones">Servicios</a>
+      <a href="#metodo">Cómo trabajamos</a>
+      <a href="#experiencia">Experiencia</a>
+      <a class="nav__cta" href="#contacto">Contanos tu caso</a>
     </nav>
-    <button class="menu" data-menu aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
 </header>
 <main id="contenido">
-<section class="hero" id="inicio">
-  <div class="wrap hero__grid">
-    <div>
-      <p class="eyebrow">Tecnología e ingeniería digital</p>
-      <h1>Del diseño<br>a la <em>producción.</em></h1>
-      <p class="lead">Tu máquina tiene capacidades. Te ayudamos a convertirlas en nuevos productos, conectando diseño, software y operación.</p>
-      <div class="actions"><a class="btn btn--primary" href="#contacto">Quiero evaluar un proyecto →</a><a class="btn btn--secondary" href="#soluciones">Conocer el servicio</a></div>
-      <div class="hero__tags"><span>Industria manufacturera</span><span>Implementación digital</span><span>Tecnología escalable</span></div>
+  <section class="hero" id="inicio" aria-labelledby="portada-titulo">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow">Integración y automatización empresarial</p>
+        <h1 id="portada-titulo">Conectamos sistemas y <em>automatizamos tareas</em> de tu empresa.</h1>
+        <p class="lead">Diseñamos e implementamos soluciones para reducir cargas manuales, intercambiar información entre herramientas y mejorar procesos de trabajo.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#contacto">Contanos qué proceso necesitás mejorar</a>
+          <a class="btn btn--secondary" href="#soluciones">Conocé nuestros servicios</a>
+        </div>
+        <p class="hero__scope">Un problema concreto. Alcance, entregables y fechas acordadas.</p>
+      </div>
+      <div class="machine-art" aria-hidden="true">
+        <div class="machine-art__top"><span>SISTEMAS</span><span>DATOS</span><span>PROCESOS</span></div>
+        <div class="braid"><span class="thread"></span><span class="thread"></span><span class="thread"></span><span class="thread"></span><span class="thread"></span></div>
+        <div class="machine-art__caption">CONECTAR · VALIDAR · AUTOMATIZAR</div>
+      </div>
     </div>
-    <div class="machine-art" aria-hidden="true"><div class="machine-art__top"><span>DESIGN</span><span>PROCESS</span><span>OUTPUT</span></div><div class="braid"><span class="thread"></span><span class="thread"></span><span class="thread"></span><span class="thread"></span><span class="thread"></span></div><div class="machine-art__caption"><span>FROM FILE</span><b>→</b><span>TO FACTORY</span></div></div>
-  </div>
-</section>
-<section class="section section--white" id="soluciones">
-  <div class="wrap">
-    <span class="kicker"><b>01</b>Nuestra primera especialidad</span>
-    <div class="section__head"><h2>No vendemos archivos.<br><em>Ayudamos a fabricar.</em></h2><div class="section__copy"><p>Comenzamos acompañando a empresas que trabajan con maquinaria textil automatizada y necesitan desarrollar o adaptar un producto. Estudiamos el software, el panel y el proceso digital para preparar un diseño compatible y acompañar su validación en producción.</p><p>El alcance se define según la máquina, el material, el dispositivo de sujeción y las condiciones de prueba.</p></div></div>
-    <div class="cards">
-      <article class="card"><span class="card__num">01</span><div class="iconbox iconbox--design" aria-hidden="true"></div><h3>Diseño preparado para fabricar</h3><p>Adaptación de archivos y preparación de geometrías para el flujo de producción de cada equipo.</p></article>
-      <article class="card"><span class="card__num">02</span><div class="iconbox iconbox--software" aria-hidden="true"></div><h3>Software y panel bajo control</h3><p>Estudio de formatos compatibles, configuración permitida y procedimientos de carga del diseño.</p></article>
-      <article class="card"><span class="card__num">03</span><div class="iconbox iconbox--production" aria-hidden="true"></div><h3>De las piezas a la primera prueba</h3><p>Posicionamiento sujeto al clamp y a las restricciones del equipo, pruebas acompañadas y documentación del procedimiento.</p></article>
-    </div>
-  </div>
-</section>
-<section class="section section--dark" id="proposito">
-  <div class="wrap"><span class="kicker"><b>02</b>Por qué existimos</span><p class="statement">Creemos que la tecnología vale cuando <em>amplía las posibilidades</em> de quienes producen.</p><div class="darkline"><span>Software · Ingeniería · Producción</span><strong>///</strong></div></div>
-</section>
-<section class="section" id="metodo">
-  <div class="wrap"><span class="kicker"><b>03</b>Un método entendible</span><h2>Primero entendemos.<br><em>Después implementamos.</em></h2><div class="steps"><div class="step"><small>01 / ESCUCHAR</small><h3>Entender el producto</h3><p>Identificamos el resultado que necesitás, la máquina, los archivos disponibles y los límites del proceso.</p></div><div class="step"><small>02 / DISEÑAR</small><h3>Preparar lo digital</h3><p>Adaptamos el flujo de diseño y los parámetros permitidos, con criterios claros de compatibilidad.</p></div><div class="step"><small>03 / VALIDAR</small><h3>Probar en producción</h3><p>Acompañamos las pruebas, registramos los ajustes y dejamos archivos y procedimiento documentados.</p></div></div></div>
-</section>
-<section class="section section--dark" id="evolucion">
-  <div class="wrap evolution"><div><span class="kicker"><b>04</b>Construido para escalar</span><h2>Empezamos en la fábrica.<br><em>Evolucionamos con el problema.</em></h2><div class="section__copy"><p>LOOMARQ nace en la implementación digital industrial, pero la marca está preparada para crecer hacia automatización, software propio e inteligencia artificial aplicada cuando exista un caso de uso que lo justifique.</p></div></div><div class="ladder"><div class="rung"><b>HOY</b><strong>Implementación digital</strong><p>Diseño, software, configuración permitida y puesta en producción.</p></div><div class="rung"><b>SIGUIENTE</b><strong>Automatización y software</strong><p>Herramientas para problemas repetitivos validados con clientes.</p></div><div class="rung"><b>FUTURO</b><strong>IA aplicada</strong><p>Optimización, asistencia y análisis sobre procesos reales y datos disponibles.</p></div></div></div>
-</section>
-<section class="section section--white">
-  <div class="wrap"><span class="kicker"><b>05</b>Experiencia inicial</span><div class="section__head"><h2>Del CAD al proceso<br><em>de fabricación.</em></h2><div class="case"><span class="case__tag">Caso en documentación</span><h3>Adaptación de diseño para un flujo automatizado de costura y corte</h3><p>La experiencia inicial de LOOMARQ parte de un trabajo real de preparación de diseño para una máquina automatizada. El caso completo se publicará cuando contemos con autorización para mostrar materiales, proceso y resultados.</p></div></div></div>
-</section>
-<section class="section contact" id="contacto">
-  <div class="wrap contact__grid"><div><span class="kicker"><b>06</b>Conversemos</span><h2>¿Qué querés<br><em>fabricar ahora?</em></h2><p>Contanos qué máquina utilizás y qué producto necesitás desarrollar. Revisamos el caso y, si podemos ayudarte, definimos el alcance de una primera implementación.</p>
-    <div class="actions"><a class="btn btn--secondary contact__whatsapp" href="https://wa.me/5493518017921?text=Hola%2C%20quiero%20consultar%20por%20una%20implementaci%C3%B3n%20digital%20con%20LOOMARQ." target="_blank" rel="noopener noreferrer" aria-label="Hablar por WhatsApp (se abre en una nueva pestaña)">Hablar por WhatsApp</a></div>
-  </div>
-  <form class="form" name="evaluacion" method="POST" action="./gracias.html" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="evaluacion"><p class="hidden"><label>No completar: <input name="bot-field"></label></p>
-    <div class="form__grid"><div class="field"><label for="nombre">Nombre *</label><input id="nombre" name="nombre" autocomplete="name" required></div><div class="field"><label for="empresa">Empresa</label><input id="empresa" name="empresa" autocomplete="organization"></div><div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div><div class="field"><label for="telefono">Teléfono / WhatsApp</label><input id="telefono" name="telefono" type="tel" autocomplete="tel"></div><div class="field"><label for="maquina">Máquina o equipo</label><input id="maquina" name="maquina" placeholder="Marca / modelo si lo conocés"></div><div class="field"><label for="etapa">¿En qué etapa estás?</label><select id="etapa" name="etapa"><option>Quiero desarrollar un producto</option><option>Ya tengo un diseño y necesito adaptarlo</option><option>Necesito entender software/panel</option><option>Estoy evaluando una máquina</option><option>Otro</option></select></div><div class="field field--full"><label for="mensaje">Contanos qué necesitás *</label><textarea id="mensaje" name="mensaje" required placeholder="Producto, material, máquina, software y cualquier dato que nos ayude a entender el caso."></textarea></div></div>
-    <label class="check"><input type="checkbox" name="privacidad" required><span>Acepto que LOOMARQ utilice estos datos para responder mi consulta, según la <a href="./privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</span></label>
-    <button class="btn btn--primary" type="submit">Solicitar evaluación →</button><p class="form__note">No compartas contraseñas, credenciales ni información confidencial de tu empresa en este formulario.</p>
-  </form></div>
-</section>
-</main>
-<footer class="footer"><div class="wrap footer__grid"><div class="footer__brand"><img src="./assets/img/brand/loomarq-logo-primary.png" alt="LOOMARQ"></div><p>Tecnología e ingeniería digital.<br>Primer foco: producción industrial y maquinaria automatizada.<br>Córdoba, Argentina.</p><div><small>© <span data-year></span> LOOMARQ · <a href="./privacidad.html">Privacidad</a><br><a href="https://getloomarq.com/">getloomarq.com</a></small>
-  <section class="footer__channels" aria-labelledby="canales-titulo">
-    <h2 id="canales-titulo" class="footer__channels-title">Canales</h2>
-    <ul class="footer__channels-list">
-      <li><a href="https://wa.me/5493518017921?text=Hola%2C%20quiero%20consultar%20por%20una%20implementaci%C3%B3n%20digital%20con%20LOOMARQ." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (se abre en una nueva pestaña)">WhatsApp</a></li>
-      <li><span class="footer__pending">Instagram · Próximamente</span></li>
-      <li><span class="footer__pending">LinkedIn · Próximamente</span></li>
-    </ul>
   </section>
-</div></div></footer>
+
+  <section class="section section--white" id="soluciones" aria-labelledby="servicios-titulo">
+    <div class="wrap">
+      <p class="kicker">Servicios</p>
+      <div class="section__head">
+        <h2 id="servicios-titulo">Menos tareas manuales.<br><em>Procesos mejor conectados.</em></h2>
+        <div class="section__copy" id="proposito">
+          <p>Si tu equipo copia datos entre herramientas, revisa planillas a mano o repite la misma tarea administrativa, podemos evaluar una mejora concreta.</p>
+          <p>Trabajamos con pymes, responsables de operaciones e integradores que necesitan resolver una parte definida de un proceso, en distintos rubros.</p>
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card card--main">
+          <div class="iconbox iconbox--software" aria-hidden="true"></div>
+          <h3>Integración y automatización empresarial</h3>
+          <p>Conexiones y mejoras acotadas sobre las herramientas que ya usa tu empresa.</p>
+          <ul class="service-list">
+            <li>Intercambio de información entre sistemas de gestión, CRM y otras aplicaciones.</li>
+            <li>Importación, validación y conciliación de datos.</li>
+            <li>Reportes y exportaciones programadas.</li>
+            <li>Automatización de tareas administrativas repetitivas.</li>
+            <li>Componentes o mejoras puntuales en aplicaciones existentes.</li>
+          </ul>
+          <p class="service-note">Son ejemplos de servicios posibles. La viabilidad depende de los accesos, los datos y las posibilidades de cada sistema.</p>
+          <a class="text-link" href="#contacto">Consultá por una integración o automatización</a>
+        </article>
+        <article class="card">
+          <div class="iconbox iconbox--design" aria-hidden="true"></div>
+          <h3>Implementación digital industrial</h3>
+          <p>Preparación del trabajo digital vinculado con maquinaria, con antecedentes en el ámbito textil y CAD/CAM.</p>
+          <ul class="service-list">
+            <li>Preparación y adaptación de diseños.</li>
+            <li>Revisión de compatibilidad de archivos y software.</li>
+            <li>Procedimientos digitales para la carga y el uso de diseños.</li>
+            <li>Validación acordada y documentación del trabajo.</li>
+          </ul>
+          <p class="service-note">Evaluamos cada equipo, formato y condición de prueba antes de definir el alcance. La intervención se acuerda según la documentación y los accesos disponibles.</p>
+          <a class="text-link" href="#contacto">Consultá por un proceso industrial</a>
+          <details class="case-note">
+            <summary>Trabajo de Loomarq en documentación</summary>
+            <p>El antecedente inicial es un trabajo de preparación de diseño para una máquina automatizada. Su publicación queda sujeta a contar con documentación y autorización para compartir los materiales.</p>
+          </details>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="metodo" aria-labelledby="metodo-titulo">
+    <div class="wrap">
+      <p class="kicker">Cómo trabajamos</p>
+      <div class="section__head">
+        <h2 id="metodo-titulo">Un primer proyecto.<br><em>Un alcance claro.</em></h2>
+        <div class="section__copy">
+          <p>Empezamos por una necesidad acotada: conectar dos herramientas, automatizar una tarea o preparar un procedimiento digital.</p>
+          <p>Antes de implementar, acordamos qué se entrega, cómo se valida y en qué fechas. Los cambios de alcance y las siguientes etapas se planifican por separado.</p>
+        </div>
+      </div>
+      <ol class="steps">
+        <li class="step"><h3>Entender el problema</h3><p>Revisamos qué necesitás mejorar, cómo se trabaja hoy y qué sistemas o equipos intervienen.</p></li>
+        <li class="step"><h3>Evaluar la viabilidad</h3><p>Analizamos los accesos, los datos, la documentación y las restricciones. Si falta información, la identificamos antes de avanzar.</p></li>
+        <li class="step"><h3>Acordar el proyecto</h3><p>Definimos alcance, entregables, fechas y criterios de aceptación en una propuesta para que puedas decidir.</p></li>
+        <li class="step"><h3>Implementar y probar</h3><p>Desarrollamos la solución y hacemos las pruebas acordadas para verificar su funcionamiento.</p></li>
+        <li class="step"><h3>Entregar y documentar</h3><p>Entregamos lo acordado y la documentación de uso. Cualquier ajuste posterior o nueva etapa se acuerda con su propio alcance.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="experiencia" aria-labelledby="experiencia-titulo">
+    <div class="wrap">
+      <p class="kicker">Quién está detrás</p>
+      <div class="section__head experience">
+        <div>
+          <h2 id="experiencia-titulo">Experiencia en software.<br><em>Criterio para tu proyecto.</em></h2>
+          <p class="founder">Marcio Bagnus <span>Fundador de Loomarq</span></p>
+          <div class="section__copy">
+            <p>Soy Ingeniero en Sistemas de Información y tengo más de ocho años de experiencia profesional en software, con trabajo en sistemas empresariales de gestión, APIs e integración de sistemas.</p>
+            <p>También cuento con antecedentes en CAD/CAM, maquinaria y procesos industriales. Esa experiencia aporta contexto para evaluar tanto una integración empresarial como un trabajo digital industrial.</p>
+          </div>
+        </div>
+        <div class="experience__background">
+          <h3>Trayectoria profesional personal</h3>
+          <p>Mi experiencia laboral incluye Mercado Libre, Municipalidad de Córdoba, Iveco y Libellula Software.</p>
+          <p class="experience__clarification">Estas empresas forman parte de mi trayectoria personal; no son referencias de clientes de Loomarq.</p>
+          <h3>Base técnica</h3>
+          <p>C#/.NET, Java/Spring Boot, bases de datos relacionales, APIs, arquitectura, testing y CI/CD.</p>
+          <p class="experience__note" id="evolucion">Elegimos las herramientas según el problema, los sistemas existentes y las condiciones del proyecto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contacto" aria-labelledby="contacto-titulo">
+    <div class="wrap contact__grid">
+      <div>
+        <p class="kicker">Contanos tu caso</p>
+        <h2 id="contacto-titulo">¿Qué proceso <em>necesitás mejorar?</em></h2>
+        <p>Contanos qué tarea se repite, qué herramientas usás y qué resultado necesitás. Si se trata de un proceso industrial, agregá el equipo y el software involucrados, si los conocés.</p>
+        <p>Revisamos la consulta para evaluar si podemos ayudarte y qué información hace falta para definir un primer proyecto.</p>
+        <div class="actions"><a class="btn btn--secondary contact__whatsapp" href="https://wa.me/5493518017921?text=Hola%2C%20quiero%20consultar%20por%20un%20proyecto%20de%20integraci%C3%B3n%2C%20automatizaci%C3%B3n%20o%20implementaci%C3%B3n%20digital%20con%20LOOMARQ." target="_blank" rel="noopener noreferrer" aria-label="Hablar por WhatsApp (se abre en una nueva pestaña)">Hablar por WhatsApp</a></div>
+      </div>
+      <form class="form" name="evaluacion" method="POST" action="./gracias.html" data-netlify="true" netlify-honeypot="bot-field" aria-label="Consulta por un proyecto">
+        <input type="hidden" name="form-name" value="evaluacion">
+        <p class="hidden" aria-hidden="true"><label>No completar: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <p class="form__intro">Los campos con * son obligatorios.</p>
+        <div class="form__grid">
+          <div class="field"><label for="nombre">Nombre *</label><input id="nombre" name="nombre" autocomplete="name" required></div>
+          <div class="field"><label for="empresa">Empresa</label><input id="empresa" name="empresa" autocomplete="organization"></div>
+          <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="telefono">Teléfono / WhatsApp</label><input id="telefono" name="telefono" type="tel" autocomplete="tel"></div>
+          <div class="field field--full">
+            <label for="etapa">Tipo de consulta *</label>
+            <select id="etapa" name="etapa" required>
+              <option value="">Elegí una opción</option>
+              <option value="Integración entre sistemas">Integración entre sistemas</option>
+              <option value="Automatización de tareas">Automatización de tareas</option>
+              <option value="Intercambio o tratamiento de datos">Intercambio o tratamiento de datos</option>
+              <option value="Implementación digital industrial">Implementación digital industrial</option>
+              <option value="Otro problema">Otro problema</option>
+            </select>
+          </div>
+          <div class="field field--full"><label for="maquina">Máquina o equipo <span>(opcional, para consultas industriales)</span></label><input id="maquina" name="maquina" placeholder="Marca y modelo, si los conocés"></div>
+          <div class="field field--full"><label for="mensaje">Contanos qué necesitás *</label><textarea id="mensaje" name="mensaje" required placeholder="¿Cómo hacés la tarea hoy? ¿Qué sistemas, archivos o equipos intervienen? ¿Qué te gustaría mejorar?"></textarea></div>
+        </div>
+        <div class="check"><input id="privacidad" type="checkbox" name="privacidad" required><label for="privacidad">Acepto que LOOMARQ utilice estos datos para responder mi consulta, según la <a href="./privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</label></div>
+        <button class="btn btn--primary" type="submit">Enviar consulta</button>
+        <p class="form__note">No compartas contraseñas, credenciales ni información confidencial de tu empresa en este formulario.</p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand"><img src="./assets/img/brand/loomarq-logo-primary.png" alt="LOOMARQ" width="300" height="100"></div>
+    <p>Integración de sistemas y automatización empresarial.<br>Especialidad en implementación digital industrial.<br>Córdoba, Argentina.</p>
+    <div>
+      <small>© <span data-year>2026</span> LOOMARQ · <a href="./privacidad.html">Privacidad</a><br><a href="https://getloomarq.com/">getloomarq.com</a></small>
+      <section class="footer__channels" aria-labelledby="canales-titulo">
+        <h2 id="canales-titulo" class="footer__channels-title">Canales</h2>
+        <ul class="footer__channels-list">
+          <li><a href="https://wa.me/5493518017921?text=Hola%2C%20quiero%20consultar%20por%20un%20proyecto%20de%20integraci%C3%B3n%2C%20automatizaci%C3%B3n%20o%20implementaci%C3%B3n%20digital%20con%20LOOMARQ." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (se abre en una nueva pestaña)">WhatsApp</a></li>
+          <li><span class="footer__pending">Instagram · Próximamente</span></li>
+          <li><span class="footer__pending">LinkedIn · Próximamente</span></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</footer>
 <script src="./assets/js/main.js" defer></script>
-</body></html>
+</body>
+</html>
