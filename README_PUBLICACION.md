@@ -1,4 +1,4 @@
-# LOOMARQ Web Production v1.2
+# LOOMARQ Web Production v1.4
 
 Sitio estático de LOOMARQ para `https://getloomarq.com`, construido con HTML, CSS, JavaScript e imágenes. No requiere instalación de paquetes, framework, compilación ni backend propio. El formulario utiliza Netlify Forms.
 
@@ -14,7 +14,7 @@ La preparación local no crea el repositorio remoto, no conecta servicios y no p
 .
 ├── index.html                 # Página principal y formulario evaluacion
 ├── privacidad.html            # Política de privacidad
-├── gracias.html               # Confirmación del formulario
+├── gracias.html               # Ruta anterior; orienta al formulario sin confirmar recepción
 ├── 404.html                   # Página de error para Netlify
 ├── favicon.ico
 ├── site.webmanifest           # Identidad, inicio e iconos del manifiesto
@@ -25,7 +25,7 @@ La preparación local no crea el repositorio remoto, no conecta servicios y no p
 ├── README_PUBLICACION.md
 └── assets/
     ├── css/styles.css
-    ├── js/main.js              # Menú accesible y año del pie de página
+    ├── js/main.js              # Menú, año y envío confirmado de consultas
     ├── icons/                 # Favicons e iconos del manifiesto
     └── img/
         ├── brand/             # Logo y símbolo de LOOMARQ
@@ -50,7 +50,9 @@ El servidor de Python no interpreta `netlify.toml`, no procesa Netlify Forms y n
 
 ## Formulario y canales de consulta
 
-Se conserva el formulario HTML `evaluacion`, su POST a `./gracias.html`, el campo oculto `form-name`, el honeypot `bot-field` y el consentimiento obligatorio `privacidad`. El formulario funciona sin JavaScript. No enviar consultas reales durante las pruebas locales.
+El formulario HTML `evaluacion` utiliza Netlify Forms, con `action="/"`, método POST, campo oculto `form-name`, honeypot `bot-field` y consentimiento obligatorio `privacidad`. `main.js` envía los campos mediante `fetch` al mismo origen con codificación `application/x-www-form-urlencoded`. La confirmación se muestra en el formulario, sin navegar a otra página. Para procesar consultas, Netlify debe tener la detección activada y el formulario registrado tras un despliegue.
+
+El botón se habilita únicamente después de instalar el manejador de envío. Sin JavaScript o si faltan las APIs necesarias, permanece deshabilitado y se ofrece WhatsApp; así se evita un POST nativo sin manejo de errores. No enviar consultas reales durante las pruebas locales.
 
 | Nombre enviado a Netlify | Uso actual |
 | --- | --- |
@@ -63,15 +65,17 @@ Se conserva el formulario HTML `evaluacion`, su POST a `./gracias.html`, el camp
 | `mensaje` | Descripción del problema, obligatoria |
 | `privacidad` | Aceptación del uso de datos para responder, obligatoria |
 
-`etapa` permite elegir integración entre sistemas, automatización de tareas, intercambio o tratamiento de datos, implementación digital industrial u otro problema. Las claves de los campos son las mismas que antes de la actualización; sus valores se envían mediante el POST nativo del navegador, sin una capa de transformación en JavaScript.
+`etapa` permite elegir integración entre sistemas, automatización de tareas, intercambio o tratamiento de datos, implementación digital industrial u otro problema. Se conservan todas las claves de campos y los valores enviados: `FormData` los recoge y `URLSearchParams` los codifica sin renombrarlos.
 
-Netlify recibe técnicamente las consultas. El destinatario de las notificaciones por correo se configura en el proyecto de Netlify y no está definido en este repositorio. Antes de una publicación autorizada, revisar cualquier integración externa que interprete los valores anteriores de `etapa`; después, comprobar que Netlify haya detectado el esquema y las opciones actualizadas. Esta revisión local no acredita recepción de correo.
+Netlify Forms es el servicio encargado de registrar las consultas. El destinatario de las notificaciones por correo se configura en el proyecto de Netlify y no está definido en este repositorio. Antes de publicar, revisar cualquier integración externa que interprete los valores de `etapa` y comprobar que Netlify haya detectado el esquema. La aceptación del POST por Netlify no acredita que una notificación haya llegado al correo.
 
 WhatsApp conserva el número existente. Su mensaje inicial ahora contempla integración, automatización e implementación digital. No se agregaron servicios de analítica: el código actual no contiene scripts de seguimiento.
 
 Las tarjetas sociales usan el símbolo de marca existente para evitar compartir la antigua imagen con texto exclusivamente industrial. Se conserva esa imagen en el repositorio, pero la portada ya no la referencia. Los metadatos, el JSON-LD y su hash CSP en `netlify.toml` se actualizan juntos.
 
-## Validación de la actualización comercial
+## Validación de la actualización de posicionamiento (v1.2)
+
+Registro histórico del flujo anterior a la corrección de envío v1.4.
 
 - Sintaxis de JavaScript y `git diff --check` sin errores; no hay build, lint ni suite de pruebas configurados en este sitio estático.
 - Referencias locales de las cuatro páginas, anclas, etiquetas de formulario, imágenes, manifiesto, sitemap, JSON-LD y correspondencia del hash CSP revisados.
@@ -81,6 +85,86 @@ Las tarjetas sociales usan el símbolo de marca existente para evitar compartir 
 - La CSP configurada se aplicó a las respuestas locales durante la prueba de navegador, sin errores de consola ni recursos fallidos.
 
 Quedan sin verificar la recepción en Netlify Forms, las notificaciones por correo, posibles integraciones externas del formulario, las tarjetas sociales en cada plataforma y la aplicación de cabeceras y rutas de error en el alojamiento. Esta validación no incluyó un despliegue de producción.
+
+## Optimización comercial y de experiencia (v1.3)
+
+### Auditoría y prioridades
+
+La base actual comunica con claridad la integración y automatización empresarial, conserva la digitalización industrial como especialidad y separa la trayectoria del fundador de los clientes de LOOMARQ. Se mantienen esa propuesta, el H1, la identidad visual, las cinco secciones principales, el menú accesible, los canales de contacto y la arquitectura estática.
+
+Los servicios describían capacidades técnicas, pero faltaban ejemplos que relacionaran un problema cotidiano con una solución posible y un beneficio esperado. El proceso de trabajo explicaba las etapas del proyecto sin nombrar una oferta de entrada. Los CTA usaban textos diferentes y la ayuda para describir el problema desaparecía al escribir en el campo. Se priorizaron estas mejoras de claridad y conversión; la revisión inicial automática de accesibilidad no encontró infracciones en escritorio.
+
+| Orden | Mejora elegida | Impacto comercial | Esfuerzo técnico |
+| --- | --- | --- | --- |
+| 1 | Tres situaciones empresariales con solución posible y beneficio esperado | Alto | Bajo |
+| 2 | Diagnóstico técnico de integración dentro de Cómo trabajamos | Alto | Bajo |
+| 3 | CTA común y formulario comprensible sin conocimientos técnicos | Alto | Bajo |
+| 4 | Agrupar la experiencia personal y el antecedente propio con identificación explícita | Medio | Bajo |
+
+### Cambios implementados
+
+- `index.html`: ejemplos de sistemas desconectados, tareas en Excel e información dispersa dentro de Servicios. Se identifican como ejemplos conceptuales y se acortan las listas técnicas para limitar la repetición. La propuesta inicial explica qué se evalúa en un diagnóstico y cómo se decide avanzar, sin fijar precio, gratuidad, plazos ni entregables nuevos.
+- `index.html`: CTA principal «Contanos tu caso» en navegación, portada, servicios y método; WhatsApp sigue siendo un canal alternativo para la misma consulta. El formulario muestra campos opcionales, ofrece orientación para quien desconoce la solución técnica y conserva la ayuda del mensaje mediante `aria-describedby`. Se preservan todos los nombres de campos, sus requisitos y los valores enviados en `etapa`; solo cambian las etiquetas visibles de sus opciones.
+- `index.html`: experiencia laboral del fundador y trabajo propio de LOOMARQ reunidos en Experiencia, con su diferencia explícita. El antecedente industrial conserva su estado de documentación pendiente. Las descripciones SEO, Open Graph y Twitter incorporan el desarrollo de software y los problemas operativos. El JSON-LD y su hash CSP permanecen válidos.
+- `assets/css/styles.css`: estilos de las situaciones reutilizables (`article` y listas de definición), disposición móvil en una columna, título del diagnóstico, ayuda del formulario y adaptación del componente existente `case-note` al fondo de Experiencia. Se conservan colores, fuentes y estilo general; no se agregan assets, scripts ni dependencias de producción.
+
+### Verificación local
+
+Registro de la revisión v1.3, anterior al envío dentro del sitio incorporado en v1.4.
+
+- Sintaxis JavaScript y `git diff --check` sin errores. No hay suite de tests, lint, chequeo de tipos ni build configurados; el sitio se sirve directamente.
+- Referencias locales, IDs únicos, anclas y asociaciones accesibles revisadas en las cuatro páginas. Manifiesto y sitemap válidos; contrato de campos y valores del formulario comparado con `main`. JSON-LD válido y coincidencia con el hash CSP existente.
+- Chrome: sin desbordamiento horizontal en 320, 375, 390, 480, 680, 768, 900, 901, 1024, 1280, 1440 y 1920 px. Capturas revisadas en escritorio y móvil.
+- axe-core: sin infracciones automáticas de WCAG 2.1 AA en la portada en escritorio y móvil, en el detalle del antecedente desplegado y en las tres páginas auxiliares. Esta comprobación automática no equivale a una auditoría completa de accesibilidad.
+- Menú móvil, Escape, retorno de foco, clic exterior, enlace para saltar al contenido y navegación a contacto comprobados. Navegación y envío nativo disponibles también sin JavaScript.
+- Campos obligatorios, formato de email y consentimiento comprobados. Cinco envíos simulados e interceptados, uno por cada tipo de consulta, validaron claves, valores con acentos, campos opcionales y navegación a la confirmación. Un sexto envío interceptado comprobó el funcionamiento sin JavaScript. No se enviaron consultas a servicios externos.
+- Sin errores de consola, de página ni de carga de recursos, con las cabeceras CSP de producción aplicadas por el servidor local. Las herramientas de navegador se instalaron en un directorio temporal externo al repositorio.
+
+### Pendientes de validación humana
+
+- Definir las condiciones comerciales del diagnóstico: alcance, modalidad y precio; plazos y entregables si corresponde ofrecerlos. La web indica que se acuerdan antes de avanzar.
+- Reunir documentación y autorización para publicar materiales del antecedente industrial y futuros casos propios. El componente `case-note` puede ampliarse con evidencia aprobada; los ejemplos conceptuales deben seguir identificados como tales.
+- Verificar en el alojamiento la recepción en Netlify Forms y las notificaciones por correo. Las pruebas locales interceptan el POST y no acreditan recepción real. La vista previa tampoco valida el comportamiento de la ruta 404 en Netlify ni las tarjetas sociales de cada plataforma.
+
+## Corrección del formulario (v1.4)
+
+### Diagnóstico
+
+El 19 de noviembre de 2026 se comprobó mediante GET que el sitio responde desde Netlify y que `/gracias.html` y `/gracias` existen y responden HTTP 200. No hay framework ni router de aplicación: son archivos estáticos publicados desde la raíz. No se encontró FormSubmit, `_next`, API propia ni configuración de Vercel.
+
+El formulario anterior usaba `method="POST"` y `action="./gracias.html"`: el navegador enviaba los datos a esa ruta, en vez de comprobar el resultado dentro de la página. La existencia de un archivo accesible por GET no implica que el alojamiento acepte un POST. El responsable confirmó que `evaluacion` no aparece en Forms. Además, el HTML publicado conserva `data-netlify="true"`, atributo que Netlify elimina cuando detecta el formulario. El problema identificado es la falta de registro del formulario en Netlify, junto con un flujo nativo sin manejo de errores; crear otra página de agradecimiento no registra ni entrega las consultas.
+
+No se consultó el panel privado ni el historial de envíos de Netlify, y no se verificó el destinatario de las notificaciones. Tampoco se comprobó la entrega real al correo. Los GET públicos y las pruebas interceptadas no demuestran que las consultas anteriores se hayan recibido.
+
+### Comportamiento corregido
+
+- Se mantiene Netlify Forms y se envía un POST al origen, sin redirecciones. Los campos obligatorios y el email se validan antes de enviar. Se preservan el honeypot, el consentimiento y el enlace a privacidad.
+- Mientras se envía, se muestra el estado, se bloquean los controles y se impide un segundo envío. No hay reintentos automáticos. Un tiempo de espera de 20 segundos limita las solicitudes que no responden; un fallo de red o timeout deja el envío sin confirmar, aunque el servidor podría haberlo recibido. Antes de un reenvío en ese caso, se puede consultar por WhatsApp.
+- Solo una respuesta HTTP exitosa directa permite mostrar el agradecimiento. Se rechazan los errores HTTP, las redirecciones y las respuestas que devuelven una página estática del propio sitio con estado 200. La respuesta de error del servidor no se inserta en la página ni se muestra al visitante.
+- Ante un error, se conservan los valores y el consentimiento en los controles, se habilita el reintento manual y se ofrece WhatsApp. Los mensajes tienen región accesible y reciben foco. Los datos se borran y se ocultan los campos únicamente después de la confirmación; el envío queda bloqueado para impedir duplicarlo.
+- Los datos viajan en el cuerpo del POST al mismo origen. No se agregan almacenamiento persistente, analítica, registros con datos personales, tokens ni credenciales en el navegador.
+- La ruta histórica `/gracias.html` se conserva para enlaces anteriores, pero ya no afirma que una consulta fue recibida por el solo hecho de abrirla. Orienta al formulario y a WhatsApp. Sin JavaScript, el formulario ofrece ese canal alternativo en lugar de navegar sin poder manejar el error.
+
+### Configuración y comprobación en Netlify
+
+1. En el proyecto que sirve `getloomarq.com`, abrir **Forms** y habilitar **Enable form detection**. Si ya estaba habilitada, revisar el despliegue y su procesamiento de formularios. Esto se configura en Netlify; agregar el atributo al HTML no activa por sí solo el servicio.
+2. Desplegar la versión corregida desde la raíz del repositorio: publish directory `.` y sin comando de build. La detección se aplica en el siguiente despliegue, por lo que habilitarla sin volver a desplegar no alcanza.
+3. Confirmar que **Forms** muestre **evaluacion**, con los campos esperados. Comprobar el HTML servido: `data-netlify="true"` debe haber sido procesado y `form-name` debe conservar el valor `evaluacion`.
+4. En **Forms → Submission notifications → Add notification**, configurar o revisar la notificación por email para `evaluacion` y el destinatario real. No hace falta agregar variables SMTP, claves privadas ni direcciones de destinatario al HTML. Vercel no interviene en el alojamiento observado; Netlify Forms requiere su propio servicio de procesamiento si se cambia de proveedor en el futuro.
+5. Realizar un único envío de prueba identificable, con un correo propio y contenido no confidencial. En la pestaña Network, confirmar el POST a `/`, su respuesta exitosa directa y la confirmación en la página, sin navegación a `/gracias.html`.
+6. Buscar esa misma prueba en **Forms → evaluacion**, incluyendo los envíos marcados como spam. Luego verificar la llegada de la notificación al destinatario y revisar su carpeta de spam. La aparición en Netlify y la recepción del email son dos comprobaciones distintas. Si aparece en Forms pero no llega el correo, revisar la notificación antes de repetir el envío.
+
+No se modificó la configuración de producción ni se realizó un despliegue durante esta corrección. El arreglo local requiere habilitar/registrar el formulario y comprobar el flujo real antes de considerarlo resuelto en producción.
+
+### Verificación de la corrección
+
+Se ejecutaron 15 comprobaciones automatizadas en Chrome con los POST interceptados localmente: campos obligatorios/email/consentimiento; espera y bloqueo de duplicados; éxito directo; errores HTTP 404, 422, 429 y 500; HTTP 200 con la portada o la página histórica; redirección a una URL válida; fallo de red con reintento manual; timeout; ausencia de JavaScript o de `fetch`; conservación de las cinco opciones y los datos industriales opcionales; responsive, rutas y privacidad.
+
+Las pruebas comprobaron la conservación de datos ante fallos, la limpieza únicamente después del éxito, la ausencia de datos en localStorage/sessionStorage y la permanencia en la página. La revisión automática de accesibilidad no encontró infracciones WCAG 2.1 AA en los estados inicial, éxito y error ni en las tres páginas auxiliares. Se revisaron capturas móviles y ocho anchos entre 320 y 1440 px, con la CSP existente aplicada localmente. También se verificaron sintaxis JavaScript, enlaces, etiquetas, manifiesto, sitemap y correspondencia del hash CSP. No hay build, lint, chequeo de tipos ni suite de tests configurados en este sitio estático.
+
+No se enviaron consultas reales, no se verificó entrega por correo y no se publicaron cambios. La comprobación del servicio y de las notificaciones sigue el procedimiento anterior en Netlify.
+
+Referencias oficiales: [detección y envío AJAX de formularios](https://docs.netlify.com/manage/forms/setup/), [historial de envíos](https://docs.netlify.com/manage/forms/submissions/) y [notificaciones por email](https://docs.netlify.com/manage/forms/notifications/).
 
 ## Rutas y dominio
 
