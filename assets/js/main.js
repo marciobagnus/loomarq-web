@@ -77,12 +77,9 @@
         signal: controller.signal
       });
 
-      // A redirect or a static page served as HTTP 200 does not confirm a submission.
+      // Netlify acknowledges the POST with 2xx and may return the action page's HTML.
+      // That response body is not a separate confirmation or an error condition.
       if (!response.ok || response.redirected) throw new Error('Submission not confirmed');
-      const reply = new DOMParser().parseFromString(await response.text(), 'text/html');
-      if (reply.querySelector('form[name="evaluacion"], link[href$="/assets/css/styles.css"]')) {
-        throw new Error('Static site response');
-      }
 
       submitted = true;
       form.reset();
