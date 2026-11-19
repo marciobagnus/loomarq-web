@@ -1,6 +1,8 @@
-# LOOMARQ Web Production v1.1
+# LOOMARQ Web Production v1.2
 
 Sitio estático de LOOMARQ para `https://getloomarq.com`, construido con HTML, CSS, JavaScript e imágenes. No requiere instalación de paquetes, framework, compilación ni backend propio. El formulario utiliza Netlify Forms.
+
+La propuesta actual es integración de sistemas y automatización empresarial por proyecto, con implementación digital industrial como especialidad. La experiencia profesional del fundador se presenta por separado del antecedente industrial de Loomarq, que sigue en documentación.
 
 Flujo de trabajo: **VS Code / Codex → Git local → GitHub → Netlify → getloomarq.com**.
 
@@ -23,7 +25,7 @@ La preparación local no crea el repositorio remoto, no conecta servicios y no p
 ├── README_PUBLICACION.md
 └── assets/
     ├── css/styles.css
-    ├── js/main.js              # Menú móvil y año del pie de página
+    ├── js/main.js              # Menú accesible y año del pie de página
     ├── icons/                 # Favicons e iconos del manifiesto
     └── img/
         ├── brand/             # Logo y símbolo de LOOMARQ
@@ -45,6 +47,40 @@ Comprobar el menú móvil, las anclas, las imágenes, los estilos y las páginas
 Se puede abrir `index.html` directamente para una vista rápida: sus recursos usan rutas relativas. Para verificar la navegación completa y las rutas desde la raíz del manifiesto y de la página 404, usar el servidor HTTP. Los enlaces `./` de las páginas auxiliares pueden abrir una carpeta bajo `file://`.
 
 El servidor de Python no interpreta `netlify.toml`, no procesa Netlify Forms y no sirve automáticamente nuestra `404.html` al solicitar una ruta inexistente. Un POST local puede responder 501; esto no demuestra un fallo del formulario. Las cabeceras, el manejo real del error 404 y la recepción de consultas se verifican en Netlify después de autorizar la publicación.
+
+## Formulario y canales de consulta
+
+Se conserva el formulario HTML `evaluacion`, su POST a `./gracias.html`, el campo oculto `form-name`, el honeypot `bot-field` y el consentimiento obligatorio `privacidad`. El formulario funciona sin JavaScript. No enviar consultas reales durante las pruebas locales.
+
+| Nombre enviado a Netlify | Uso actual |
+| --- | --- |
+| `nombre` | Nombre, obligatorio |
+| `empresa` | Empresa, opcional |
+| `email` | Correo electrónico, obligatorio y validado como email |
+| `telefono` | Teléfono o WhatsApp, opcional |
+| `etapa` | Tipo de consulta, obligatorio; se conserva la clave existente por compatibilidad |
+| `maquina` | Máquina o equipo, opcional, para consultas industriales |
+| `mensaje` | Descripción del problema, obligatoria |
+| `privacidad` | Aceptación del uso de datos para responder, obligatoria |
+
+`etapa` permite elegir integración entre sistemas, automatización de tareas, intercambio o tratamiento de datos, implementación digital industrial u otro problema. Las claves de los campos son las mismas que antes de la actualización; sus valores se envían mediante el POST nativo del navegador, sin una capa de transformación en JavaScript.
+
+Netlify recibe técnicamente las consultas. El destinatario de las notificaciones por correo se configura en el proyecto de Netlify y no está definido en este repositorio. Antes de una publicación autorizada, revisar cualquier integración externa que interprete los valores anteriores de `etapa`; después, comprobar que Netlify haya detectado el esquema y las opciones actualizadas. Esta revisión local no acredita recepción de correo.
+
+WhatsApp conserva el número existente. Su mensaje inicial ahora contempla integración, automatización e implementación digital. No se agregaron servicios de analítica: el código actual no contiene scripts de seguimiento.
+
+Las tarjetas sociales usan el símbolo de marca existente para evitar compartir la antigua imagen con texto exclusivamente industrial. Se conserva esa imagen en el repositorio, pero la portada ya no la referencia. Los metadatos, el JSON-LD y su hash CSP en `netlify.toml` se actualizan juntos.
+
+## Validación de la actualización comercial
+
+- Sintaxis de JavaScript y `git diff --check` sin errores; no hay build, lint ni suite de pruebas configurados en este sitio estático.
+- Referencias locales de las cuatro páginas, anclas, etiquetas de formulario, imágenes, manifiesto, sitemap, JSON-LD y correspondencia del hash CSP revisados.
+- Revisión en Chrome de escritorio y móvil, con comprobación de desbordamientos en 320, 375, 390, 680, 768, 900, 1024, 1440 y 1920 px.
+- Menú móvil: apertura, cierre con Escape, clic exterior, navegación a contacto y retorno de foco al cerrar con Escape. Navegación disponible también sin JavaScript.
+- Validación nativa de campos obligatorios, formato de email y consentimiento. Cinco envíos simulados e interceptados en el navegador comprobaron claves, valores con acentos, equipo opcional y redirección a la confirmación. No se enviaron consultas reales.
+- La CSP configurada se aplicó a las respuestas locales durante la prueba de navegador, sin errores de consola ni recursos fallidos.
+
+Quedan sin verificar la recepción en Netlify Forms, las notificaciones por correo, posibles integraciones externas del formulario, las tarjetas sociales en cada plataforma y la aplicación de cabeceras y rutas de error en el alojamiento. Esta validación no incluyó un despliegue de producción.
 
 ## Rutas y dominio
 
@@ -111,7 +147,7 @@ Realizar este paso únicamente cuando se autorice conectar y publicar. Vincular 
 | Publish directory | `.` (definido en `netlify.toml`) |
 
 5. En **Forms**, habilitar la detección de formularios si está desactivada. Debe estar habilitada antes del deploy que detecte el formulario `evaluacion`.
-6. Revisar el deploy autorizado y comprobar las páginas y los recursos en la URL de Netlify. Enviar una consulta de prueba sin datos privados, comprobar su recepción en Forms y la navegación a `gracias.html`.
+6. Revisar el deploy autorizado y comprobar las páginas y los recursos en la URL de Netlify. Verificar el formulario detectado y la configuración de sus notificaciones. Un envío de prueba requiere autorización explícita; las comprobaciones locales no envían consultas reales.
 7. Probar una URL inexistente con subcarpetas, por ejemplo `/prueba/no-existe`, y confirmar respuesta HTTP 404, estilos y regreso al inicio. Comprobar las cabeceras de seguridad y caché con las herramientas del navegador.
 8. Revisar que el dominio del proyecto sea `getloomarq.com` y que HTTPS funcione. Si requiere cambios de dominio o DNS, tratarlos como una tarea separada y autorizada; no modificar registros durante la preparación de Git.
 
@@ -146,7 +182,7 @@ git status
 
 Con la publicación aprobada, ejecutar `git push origin main`. Cuando Netlify esté vinculado y sus builds estén activos, ese push puede actualizar producción. Revisar el resultado del deploy, el formulario y el dominio final. Para cambios que requieran revisión previa, trabajar en una rama separada y usar un pull request antes de integrar en `main`.
 
-## Revisión de preparación
+## Antecedente de preparación inicial
 
 Se revisaron los 20 archivos originales, las referencias del sitio, el manifiesto, el sitemap y la configuración. No se identificaron secretos, credenciales, datos privados ni referencias locales accidentales en el código. Las imágenes de marca incluyen metadatos de procedencia, conservados sin modificación.
 
